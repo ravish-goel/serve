@@ -24,5 +24,5 @@ deploy:
   on:
    repo: ravish-goel/serve
   run:
-    - "heroku container:login"
-    - "heroku container:push web"
+    - "/usr/local/heroku/bin/heroku container:login"
+    - "/usr/local/heroku/bin/heroku container:push web"
