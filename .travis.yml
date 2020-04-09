@@ -9,4 +9,4 @@ deploy:
   on:
     repo: ravish-goel/serve
   run:
-    -"heroku container:login"
+    - "heroku container:login"
