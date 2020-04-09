@@ -3,20 +3,26 @@ language: node_js
 node_js:
 - '10'
 
+services:
+  - docker
+
 before_script:
   # this install.sh script requires sudo
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
 
 script:
-  - /usr/local/heroku/bin/heroku restart --app serve123 # requires HEROKU_API_KEY env variable
-  - heroku container:login
+  - /usr/local/heroku/bin/heroku restart --app serve123 # requires HEROKU_API_KEY env variable 1319215a-58dd-4cff-b246-7f84f163c429
+  - docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
+  - docker build -t registry.heroku.com/serve123/web .
+  - docker push registry.heroku.com/serve123/web
+  - heroku container: release web --app $ serve123
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: HGkfgM0dwVxTxGUyLDLu68EQ4HzedhB62FjArxGkXZMibrg6nvV2OetXIUF6QpmQwUTwbsXHt8lWpNIZcL3v/UvWFIPnHtkddNR/M93IWez0hSVKiu6i4wVL9a1DVxCczVRuudB1OPx1SZHoE+Fm3nV8HcSq7yZM28EsLBcxaNXGGcLt1xjF0q0+TCfV++03/hCVQhQlVj63rbraLvnydzoYbvGOt5QXIrbqnGlLPEdGVrrfXaZu9KtDFhxaXj3yjf6MjO91MY5nlOYXHDD+UQXcnjTysU0G+BKNxRj1Ov8jYlJonBG9Uq63HLTKMV/Pc9gzkdkxdIUTJuz6s4aEO17CJJmLxPe/vYFvinjAqWW5wd1gxfE8PVprrD0A3BZPlO3CVTQEl7AhIm6/GGRlGgxz2tMVR7O4GD7EUie295CnO1c9sZBIGfZBpcMG3x9aoi+whtxo3UqxgWKHtVUo14jtfRPuNuI5X/A2muf1yCMD0kIx/UtMnp+JvnJPjBAUjPpsLC9sAkucP4KIfLq3JHgFnq/9FHMJO+K10iT65R1IOta8mZypDPAvWPw/bWql1cevVJl/96RoAbNKYS0xHibzbfX/6PJttNTB1bD8Y6GE+gxjTn8H7YKk3HnABbRqy6sSh6gqC6j2xJXoelYVxg+a97tuoBS/3Q1/v0w13fY=
-  app: serve123
-  on:
-    repo: ravish-goel/serve
-  run:
-    - "heroku container:login"
+#deploy:
+#  provider: heroku
+#  api_key:
+#   secure: HGkfgM0dwVxTxGUyLDLu68EQ4HzedhB62FjArxGkXZMibrg6nvV2OetXIUF6QpmQwUTwbsXHt8lWpNIZcL3v/UvWFIPnHtkddNR/M93IWez0hSVKiu6i4wVL9a1DVxCczVRuudB1OPx1SZHoE+Fm3nV8HcSq7yZM28EsLBcxaNXGGcLt1xjF0q0+TCfV++03/hCVQhQlVj63rbraLvnydzoYbvGOt5QXIrbqnGlLPEdGVrrfXaZu9KtDFhxaXj3yjf6MjO91MY5nlOYXHDD+UQXcnjTysU0G+BKNxRj1Ov8jYlJonBG9Uq63HLTKMV/Pc9gzkdkxdIUTJuz6s4aEO17CJJmLxPe/vYFvinjAqWW5wd1gxfE8PVprrD0A3BZPlO3CVTQEl7AhIm6/GGRlGgxz2tMVR7O4GD7EUie295CnO1c9sZBIGfZBpcMG3x9aoi+whtxo3UqxgWKHtVUo14jtfRPuNuI5X/A2muf1yCMD0kIx/UtMnp+JvnJPjBAUjPpsLC9sAkucP4KIfLq3JHgFnq/9FHMJO+K10iT65R1IOta8mZypDPAvWPw/bWql1cevVJl/96RoAbNKYS0xHibzbfX/6PJttNTB1bD8Y6GE+gxjTn8H7YKk3HnABbRqy6sSh6gqC6j2xJXoelYVxg+a97tuoBS/3Q1/v0w13fY=
+#  app: serve123
+#  on:
+#   repo: ravish-goel/serve
+#  run:
+#    - "heroku container:login"
