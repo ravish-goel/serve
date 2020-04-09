@@ -1,8 +1,6 @@
 language: node_js
 node_js:
 - '10'
-services:
-- docker
 deploy:
   provider: heroku
   api_key:
@@ -10,3 +8,5 @@ deploy:
   app: serve123
   on:
     repo: ravish-goel/serve
+  run:
+    -"heroku container:login"
