@@ -1,17 +1,16 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 services:
-  - docker
+- docker
 before_install:
-  - docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
-  - docker build -t registry.heroku.com/test-180185/web .
-  - docker push registry.heroku.com/test-180185/web
-
+- docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
+- docker build -t registry.heroku.com/test-180185/web .
+- docker push registry.heroku.com/test-180185/web
 deploy:
   provider: heroku
   api_key:
-    secure: BT7S6qolFQuKn3ukmPD8dzDIDsUgdrm5Y+Fkyvzbw2P52FjllmGn7t1OYYFBPHZgUtT3v2q+WK9skVe17woQIERppfVuN8eZYR8f0jw2HKDlUJfIkDCHP9iOKlLV0tJAvpIHW/9Zr73bVdn7vZzzHJeT/lU0qbXp8m+D5FHgOF7OKP8ZQ4cLhfhhekRcejtyzaklF+HSBF8jAJ5Sg0NqneN0nyQ3TOixXSfSy8AaSunoRn0TkSOrpMF8KjU9IvQE5VHnxJ1V9K9Bkg2gsgQCttdFpM6e+Wwg7dP9UWbk3D5lHd8uoAMVyWIBPQ+KsPx7uR/21+uz1j/n5bb/e8Co5vwDSgFsCODTLjLW7hvO8Gu85K6gvSflWOw5N9rHdZ05mDmwXPOo5CJhspQq2NZn+pYDFp7waw6kgVVfWQnvymMkgdOMXguoC7YzqE5eu99wz9QyUZmrsWPQa/3g6zSaTYem3pDLpi6rdoatB/5LFKCTwQwZcUMk9zreo2IEW3t6JJ4VhONIng/ut65dPjhbQ2uvrdtluSr5bXcfhu9KJUVPWuee/obCGVGETEbim/6ufvqegduF+1ZvzaoZU3sV1Llk5DjA0kIxHG1P0xKHyMREmFrBw6H79J+jvqBlTCYr76Wu0n5DMpAIxF3p6fLWL51o7CZButkKwOigKt7VaBY=
+    secure: S+CiF2BAVqmJ5tquriN+39C8Rio10gye+HcS/uJcMmtITweD7Z0e4vjbLFYyVyGlFYtjfIzY2V2DLf5TjtqDyIBpM3EihbMsmTHcvzo4/3xvslyux7lf89kY5YJ5rdKi0nYn0BfFBakyATXw9dhP94KBhMJCybkNa48e94T4FVisNfCB4W4Xz559UDUKHGB69mGHpyU6rkVYPJnw6hy3KiL1rwl5NH+tHIwjzQf34TUxYQRA3pgqSOZvaUm9xCsZ4EepEqYudWfBXohSaX1vaHd2pQ5QbFJy64OS9wCRP9ciw0ePLUAr2BbkrMAQNgmh4lBxrRPQDwiEmnDl89npUGb90DZcb0UWGKkWr2TngGJbSkcOO+PsBtOlJGNn18FKyOiCFQ6gGVDhBP/xocKylItk62DRKY9nEjoj2Wk7TrzyIax2FCNOkJmMXW4dtB8xnaBpyo5/lhoqly/ergjwMrnGdv+FkgbYI8D7RhsMlGpe72r4EIYp23TuzHPxveaVs8BdG6jph1JGliewk9tmPiD5ursjOl6+x1Lj2LYxVZlZNbi0Kae0ojA4ZFmumxXfKC8R1wKvb90/AExvgHXmZnnGz3N8qB4pw03jm4sO/p40ZfTD+vA6Z/qzC5QHlStmdu6LHhLeLaxpwjB0yA9zeUQ8cAKR2D8V73mBUlcEzMU=
   app: test-180185
   run:
-    - "heroku container: release web --app $ test-180185"
+  - 'heroku container: release web --app $ test-180185'
