@@ -4,17 +4,14 @@ node_js:
 services:
 - docker
 before_install:
-- wget -qO- https://toolbelt.heroku.com/install.sh | sh
 - docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
-
-script:
 - docker build -t registry.heroku.com/test-180185/web .
+- docker push registry.heroku.com/test-180185/web
+deploy:
+  provider: heroku
+  api_key:
+    secure: Y+5D2HDAqu7BJnqz4SD6RSFYr/JOFSVQvZIQgAWhUFEEcm9EhQ/JGdGe+LC8fY52u5frFWsVg1VBqg5iDDiaoM7niI7echerEiJLVxkc82fRTRGeF5R6K0iSh9ufDJDVu4Fj23Kq/ayj/OZikqJvO2AYRrHiZmgSJol3TVR2YmX4IsNmbTfojMhAjwWsR9n8PTgFkniVdyZfgW975/VJIVcijYi4HTVDfJt4milMdwb48apZqxukRdf0C2dD6dmqsg/8/hkoZesoMrtetjoAbVQxL1DkVtj2wPIw5+7bqXJwZ9bQh/RviMH8usfJuHmS+d1ibcm2dxEtVDhRLYlbS08uc/L9y/CEabZEu72jFxlA20EgdpaJNq41CW/gL7qjyO4imLGZISlYvBug/y8dPKpux5P+z5qZYe8IozMo/CuNJCxLHUES+za1YbCqjNTyGiAh+JLbEQWpz2VuOWpwRx0An1F0TeTM/uNRUY6z8jxKQZCSUhgfjm73RWmjeSfHa23/sbGSFZYyRC/yGcLzas2CNJPv+P3mf1jGNY7napTsqbeq736CvxsmXWZHozFK7gSLyLp7sKayiFgh0TUeg0b/SL6TDBcha3lzTQFiTf7Y5/6lshwQ18Xf5MPg+HfBrWHK0Kh/SOo4AL+LK2dj/fyYb8VYPSj/ezRQlWPxtIA=
+  app: test-180185
+  run:
+  - 'heroku container: release web --app $ test-180185'
 
-deploy: 
-  provider: script 
-  script: 
-    # push to dockerhub & heroku 
-    docker push registry.heroku.com/test-180185/web
-    heroku container: release web --app $ HEROKU_APP_NAME
-   on: 
-    branch: master
