@@ -3,10 +3,6 @@ node_js:
 - '10'
 services:
 - docker
-before_install:
-- docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
-- docker build -t registry.heroku.com/serve123/web .
-- docker push registry.heroku.com/serve123/web
 deploy:
   provider: heroku
   api_key:
