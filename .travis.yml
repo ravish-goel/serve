@@ -15,7 +15,15 @@ script:
   - docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
   - docker build -t registry.heroku.com/serve123/web .
   - docker push registry.heroku.com/serve123/web
-  - heroku container: release web --app $ serve123
+
+deploy: 
+  provider: script 
+  script: 
+    # push to dockerhub & heroku 
+
+    heroku container: release web --app serve123
+   on: 
+    branch: master
 
 #deploy:
 #  provider: heroku
