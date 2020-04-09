@@ -7,4 +7,11 @@ before_install:
   - docker login --username=_ --password=1319215a-58dd-4cff-b246-7f84f163c429 registry.heroku.com
   - docker build -t registry.heroku.com/test-180185/web .
   - docker push registry.heroku.com/test-180185/web
-  - heroku container: release web --app $ test-180185
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: BT7S6qolFQuKn3ukmPD8dzDIDsUgdrm5Y+Fkyvzbw2P52FjllmGn7t1OYYFBPHZgUtT3v2q+WK9skVe17woQIERppfVuN8eZYR8f0jw2HKDlUJfIkDCHP9iOKlLV0tJAvpIHW/9Zr73bVdn7vZzzHJeT/lU0qbXp8m+D5FHgOF7OKP8ZQ4cLhfhhekRcejtyzaklF+HSBF8jAJ5Sg0NqneN0nyQ3TOixXSfSy8AaSunoRn0TkSOrpMF8KjU9IvQE5VHnxJ1V9K9Bkg2gsgQCttdFpM6e+Wwg7dP9UWbk3D5lHd8uoAMVyWIBPQ+KsPx7uR/21+uz1j/n5bb/e8Co5vwDSgFsCODTLjLW7hvO8Gu85K6gvSflWOw5N9rHdZ05mDmwXPOo5CJhspQq2NZn+pYDFp7waw6kgVVfWQnvymMkgdOMXguoC7YzqE5eu99wz9QyUZmrsWPQa/3g6zSaTYem3pDLpi6rdoatB/5LFKCTwQwZcUMk9zreo2IEW3t6JJ4VhONIng/ut65dPjhbQ2uvrdtluSr5bXcfhu9KJUVPWuee/obCGVGETEbim/6ufvqegduF+1ZvzaoZU3sV1Llk5DjA0kIxHG1P0xKHyMREmFrBw6H79J+jvqBlTCYr76Wu0n5DMpAIxF3p6fLWL51o7CZButkKwOigKt7VaBY=
+  app: test-180185
+  run:
+    - "heroku container: release web --app $ test-180185"
