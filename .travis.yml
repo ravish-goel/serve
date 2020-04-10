@@ -15,6 +15,9 @@ script:
   - docker login --username=_ --password=3933e872-8810-42b0-82e9-1743f8a4d08c registry.heroku.com
   - docker build -t registry.heroku.com/serve123/web .
   - docker push registry.heroku.com/serve123/web
+  - ( echo "ravish-goel" echo "R@v1$#@12345" ) | heroku login -i
+  - heroku container:login
+  - heroku container:release web --app serve123
   #- "/usr/local/heroku/bin/heroku container:login"
   #- "/usr/local/heroku/bin/heroku container:push web"
 
