@@ -24,7 +24,7 @@ class GridComp extends React.Component {
       <Grid container spacing={1}>
           {this.props.characterArray.map((character)=>{
             return (
-              <Grid item xs={12} sm={12} md={3} lg={3}>
+              <Grid item xs={6} sm={6} md={3} lg={3}>
                   <Card {...character}></Card>
               </Grid>
             )
